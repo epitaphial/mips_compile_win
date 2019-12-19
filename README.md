@@ -1,9 +1,12 @@
 # mips_compile_win
+
 注：本repo不包含代码，仅仅是对[binutils2.22](https://ftp.gnu.org/gnu/binutils/binutils-2.22.tar.gz)交叉编译出能在windows平台上运行的mips汇编链接等操作的可执行文件。
 
-交叉编译平台：kali linux子系统，4.4.0-18362-Microsoft。
+## 交叉编译平台
 
-编（cai）译（keng）过程（release内有现成的二进制文件，也可自己尝试编译，不保证成功）
+kali linux子系统，4.4.0-18362-Microsoft。
+
+## 编（cai）译（keng）过程（release内有现成的二进制文件，也可自己尝试编译，不保证成功）
 
 ```bash
 $wget https://ftp.gnu.org/gnu/binutils/binutils-2.22.tar.gz
@@ -19,7 +22,7 @@ $sudo make install##产生的目标文件在/opt/mips-gnu-tools下
 
 ```
 
-测试程序：
+## 测试程序
 
 ```assembly
 #test.S
@@ -28,11 +31,10 @@ $sudo make install##产生的目标文件在/opt/mips-gnu-tools下
 _start:
     addiu   $10,    $0,     0x0001
     nop
-    slti    $11,    $12,    0x0002
-    
+    slti    $11,    $12,    0x0002  
 ```
 
-汇编、链接、反汇编：
+## 汇编、链接、反汇编
 
 ```bash
 $as test.S -o test.o -EL -mips1
@@ -40,6 +42,6 @@ $ld test.o -o test -EL -Ttext 0xbfc00000
 $objdump -D test
 ```
 
-测试截图：
+## 测试截图
 
 ![Qqd33n.png](https://s2.ax1x.com/2019/12/19/Qqd33n.png)
